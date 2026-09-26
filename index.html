@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ריטריט שישי של הולי</title>
+<title>ריטריט שישי של בואו</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Assistant:wght@300;400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@600;700&family=Assistant:wght@300;400;600;700&display=swap">
 <style>
 :root{
   --paper:#FFF6C8; --paper-2:#FFFBE3; --ink:#3A2CB0; --ink-soft:#5549BD; --line:#C9C1EE; --on-ink:#FFF6C8; --ph:#9E95DD;
@@ -34,13 +34,18 @@ section{padding-block:60px;text-align:center}
 h2{font-size:clamp(46px,8vw,68px)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border:0;border-radius:4px;padding:11px 28px;font:700 15px var(--body);letter-spacing:.06em;text-decoration:none;cursor:pointer;background:var(--ink);color:var(--on-ink);transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:progress;transform:none}
 .btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .btn-slot{background:transparent;color:var(--ink-soft);border:1.5px dashed var(--ph);cursor:default;font-weight:600;letter-spacing:0}
 .btn-slot:hover{transform:none}
 
 /* hero */
 .hero{padding-block:52px 44px}
-.hero .small-caps.top{font-size:14px}
+.hero .small-caps.top{font-size:14px;margin-top:10px}
+.brand{display:grid;justify-items:center;text-decoration:none;line-height:1}
+.brand-mark{font-family:"Caveat","Segoe Print",cursive;font-weight:700;font-size:64px;letter-spacing:.01em;filter:url(#wobble)}
+.brand-loop{width:130px;height:18px;margin-top:-10px}
+.brand-he{font-size:13px;font-weight:700;letter-spacing:.3em;margin-top:2px}
 .hero h1{font-size:clamp(56px,11vw,104px)}
 .hero-sub{max-width:36ch;font-size:19px}
 .hero-row{display:grid;grid-template-columns:1fr minmax(0,400px) 1fr;align-items:end;gap:18px;width:100%;margin-top:6px}
@@ -87,8 +92,16 @@ figcaption span{font-size:15px;color:var(--ink-soft)}
 @media (max-width:640px){.cols{grid-template-columns:1fr;gap:36px}}
 
 /* pricing + register */
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:720px;margin-top:10px}
-.tier{display:grid;gap:4px;justify-items:center;padding:22px 14px 18px;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:18px 22px 16px 24px}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:720px;margin-top:24px}
+.tier{position:relative;display:grid;gap:4px;justify-items:center;padding:26px 14px 18px;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:18px 22px 16px 24px;text-decoration:none;color:var(--ink);transition:transform .15s,opacity .2s}
+.tier.is-now{box-shadow:4px 5px 0 var(--ink);cursor:pointer}
+.tier.is-now:hover{transform:translate(-2px,-2px);box-shadow:6px 7px 0 var(--ink)}
+.badge{position:absolute;top:-13px;background:var(--ink);color:var(--on-ink);font-size:12px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:999px;transform:rotate(-3deg)}
+.tier.is-later{opacity:.45;border-style:dashed;background:transparent;cursor:not-allowed;user-select:none}
+.tier.is-later .price{text-decoration:line-through;text-decoration-thickness:1.5px}
+.tier.is-later::after{content:attr(data-soon);position:absolute;inset:0;display:grid;place-items:center;background:var(--paper);border-radius:inherit;font-family:var(--script);font-weight:700;font-size:34px;opacity:0;transition:opacity .2s}
+.tier.is-later:hover{opacity:1}
+.tier.is-later:hover::after{opacity:.94}
 .tier .name{font-size:13px;font-weight:700;letter-spacing:.12em}
 .tier .price{font-family:var(--body);font-weight:300;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
 .tier .when{font-size:14px;color:var(--ink-soft)}
@@ -105,6 +118,15 @@ figcaption span{font-size:15px;color:var(--ink-soft)}
 .box > p{font-size:15px;color:var(--ink-soft)}
 .pay{display:grid;gap:12px;border-style:dashed}
 .pay .btn{width:100%}
+.pay.is-locked{opacity:.55}
+.locked{display:grid;justify-items:center;gap:8px;padding-block:18px 6px;text-align:center}
+.lock{width:52px;height:52px}
+.pay-open{display:grid;gap:10px;animation:pop .35s ease-out}
+@keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+.total{font-size:18px}
+.total b{font-family:var(--script);font-size:44px;font-weight:700;vertical-align:middle}
+.calc,.hint{font-size:14px;color:var(--ink-soft)}
+.pay.is-open{box-shadow:4px 5px 0 var(--ink);border-style:solid}
 @media (max-width:760px){.reg-grid{grid-template-columns:1fr}}
 
 form,.done{display:grid;gap:16px;margin-top:14px}
@@ -114,6 +136,16 @@ input,select,textarea{font:inherit;font-size:16px;letter-spacing:0;color:var(--i
 select{background:var(--paper-2)}
 input:focus,select:focus,textarea:focus{outline:none;border-bottom-width:2.5px}
 textarea{min-height:64px;resize:vertical}
+.choice{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
+.choice legend{padding:0;font-size:13px;font-weight:600;letter-spacing:.06em;margin-bottom:8px}
+.chips{display:flex;gap:10px}
+.chip{display:block;cursor:pointer}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-grid;place-items:center;min-width:76px;min-height:40px;padding:6px 16px;border:1.5px solid var(--ink);border-radius:999px;font-size:15px;font-weight:600;letter-spacing:0;transition:background .15s,color .15s}
+.chip input:checked + span{background:var(--ink);color:var(--on-ink)}
+.chip input:focus-visible + span{outline:2px solid var(--ink);outline-offset:3px}
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 ::placeholder{color:var(--ph)}
 .err{color:#B3261E;font-size:14px;font-weight:600}
 .notice{font-size:15px;background:var(--paper);border:1.5px dashed var(--ph);border-radius:12px;padding:10px 14px}
@@ -125,7 +157,12 @@ form .btn{justify-self:start}
 
 .bye{padding-top:20px}
 .bye h2{font-size:clamp(50px,9vw,76px)}
-.wa{font-size:16px;font-weight:600}
+.ask{font-size:18px;font-weight:600}
+.contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.contact-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:8px 20px 8px 16px;border:1.5px solid var(--ink);border-radius:999px;text-decoration:none;font-weight:700;background:var(--paper-2);transition:transform .15s}
+.contact-btn:hover{transform:translateY(-2px)}
+.contact-btn svg{width:24px;height:24px;flex:none}
+.contact-btn small{font-weight:400;color:var(--ink-soft);font-variant-numeric:tabular-nums}
 footer{padding-block:28px 32px;text-align:center}
 </style>
 
@@ -136,7 +173,12 @@ footer{padding-block:28px 32px;text-align:center}
 <div class="page" dir="rtl" lang="he">
 <main>
   <section class="hero center">
-    <p class="small-caps top">ריטריט שישי של הולי</p>
+    <a class="brand" href="#" aria-label="Bo’u, בואו">
+      <span class="brand-mark" lang="en" dir="ltr">Bo’u</span>
+      <svg class="brand-loop ink" viewBox="0 0 160 22" aria-hidden="true"><path d="M6 12 C40 4 96 3 152 9 C120 7 60 12 30 18"/></svg>
+      <span class="brand-he">בואו</span>
+    </a>
+    <p class="small-caps top">ריטריט שישי של בואו</p>
     <h1>מקבלים את השבת בכיף</h1>
     <p class="hero-sub">קצת תנועה, זמן לנוח, אוכל טוב ואנשים שכיף לפגוש. בוקר שישי אחד, ואז הביתה לשבת במצב רוח מצוין.</p>
     <div class="hero-row">
@@ -193,9 +235,9 @@ footer{padding-block:28px 32px;text-align:center}
 
   <section id="about" class="center about">
     <svg class="icon wide ink doodle" viewBox="0 0 140 90" aria-hidden="true"><path d="M30 80 C50 86 90 86 110 80 C104 64 36 64 30 80Z"/><circle cx="52" cy="58" r="10"/><circle cx="72" cy="52" r="12"/><circle cx="92" cy="58" r="10"/><path d="M72 46 C68 50 76 54 72 58 M52 54 C50 58 56 60 52 62 M92 54 C90 58 96 60 92 62"/><path d="M38 64 C30 50 34 40 40 36 C44 46 42 56 38 64Z M104 64 C112 50 108 40 102 36 C98 46 100 56 104 64Z"/></svg>
-    <h2>נעים להכיר, אנחנו הולי</h2>
+    <h2>נעים להכיר, אנחנו בואו</h2>
     <svg class="swash ink" viewBox="0 0 120 12" aria-hidden="true"><path d="M4 7 C30 2 70 2 116 6 M30 10 C60 7 90 8 110 10"/></svg>
-    <p class="lead">הקמנו את הולי כי רצינו עוד סיבות להיפגש: לזוז קצת, לאכול משהו טוב, להכיר אנשים חדשים ופשוט ליהנות ביחד. לא צריך להיות אנשי יוגה ולא צריך להכיר אף אחד מראש. אפשר להגיע עם חברים ואפשר לבד, העיקר לבוא כמו שאתם.</p>
+    <p class="lead">הקמנו את בואו כי רצינו עוד סיבות להיפגש: לזוז קצת, לאכול משהו טוב, להכיר אנשים חדשים ופשוט ליהנות ביחד. לא צריך להיות אנשי יוגה ולא צריך להכיר אף אחד מראש. אפשר להגיע עם חברים ואפשר לבד, העיקר לבוא כמו שאתם. ולמה בואו? כי זו המילה שהכי כיף לשמוע: בואו נזוז, בואו נאכל, בואו נכיר.</p>
   </section>
 
   <section id="schedule">
@@ -222,120 +264,170 @@ footer{padding-block:28px 32px;text-align:center}
 
   <section id="register" class="center">
     <h2>שומרים לכם מקום</h2>
-    <p class="lead">אותו בוקר בדיוק בכל המחירים. מה שמשתנה זה רק מתי נרשמים, אז מי שמקדים משלם פחות.</p>
+    <p class="lead">אותו בוקר בדיוק בכל המחירים. מה שמשתנה זה רק מתי נרשמים, וכרגע אתם בזמן להרשמה המוקדמת.</p>
     <div class="tiers" role="list">
-      <div class="tier" role="listitem"><span class="name">הרשמה מוקדמת</span><span class="price">₪300</span><span class="when ph">עד תאריך שיפורסם בקרוב</span></div>
-      <div class="tier" role="listitem"><span class="name">מחיר רגיל</span><span class="price">₪350</span><span class="when ph">מועדים יפורסמו בקרוב</span></div>
-      <div class="tier" role="listitem"><span class="name">הרשמה מאוחרת</span><span class="price">₪400</span><span class="when ph">מועדים יפורסמו בקרוב</span></div>
+      <a class="tier is-now" role="listitem" href="#regForm" aria-label="הרשמה מוקדמת, 300 שקלים, המחיר הנוכחי. למעבר לטופס"><span class="badge">המחיר עכשיו</span><span class="name">הרשמה מוקדמת</span><span class="price">₪300</span><span class="when ph">עד תאריך שיפורסם בקרוב</span></a>
+      <div class="tier is-later" role="listitem" aria-disabled="true" data-soon="ייפתח בהמשך"><span class="name">מחיר רגיל</span><span class="price">₪350</span><span class="when">אחרי ההרשמה המוקדמת</span></div>
+      <div class="tier is-later" role="listitem" aria-disabled="true" data-soon="ייפתח בהמשך"><span class="name">הרשמה מאוחרת</span><span class="price">₪400</span><span class="when">ממש לפני האירוע</span></div>
     </div>
     <p class="fine">הכרטיס כולל את כל מה שבתוכנית, את האוכל ואת המתנה.</p>
 
     <ol class="steps" aria-label="איך נרשמים">
-      <li><i>1</i>שולחים לנו פרטים</li>
-      <li><i>2</i>משלמים בקישור</li>
+      <li><i>1</i>ממלאים פרטים</li>
+      <li><i>2</i>משלמים בפייבוקס</li>
       <li><i>3</i>מקבלים מאיתנו אישור</li>
     </ol>
 
     <div class="reg-grid">
       <div class="box">
         <h3>הפרטים שלכם</h3>
-        <p>ממלאים, ונפתחת הודעת וואטסאפ מוכנה לשליחה אלינו.</p>
+        <p>ממלאים את הפרטים, ושלב התשלום נפתח. באים כמה? כל אחד נרשם בנפרד.</p>
         <form id="regForm" novalidate>
           <div class="row">
             <label for="fName">שם מלא<input id="fName" name="name" autocomplete="name" required></label>
             <label for="fPhone">טלפון<input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required></label>
           </div>
           <div class="row">
-            <label for="fEmail">אימייל (לא חובה)<input id="fEmail" name="email" type="email" autocomplete="email" dir="ltr" style="text-align:right"></label>
-            <label for="fCount">כמה מגיעים?
-              <select id="fCount" name="count"><option>1</option><option>2</option><option>3</option><option>4</option></select>
-            </label>
+            <label for="fAge">גיל<input id="fAge" name="age" type="number" inputmode="numeric" min="1" max="120" required></label>
+            <fieldset class="choice">
+              <legend>מין</legend>
+              <div class="chips">
+                <label class="chip"><input type="radio" name="gender" value="נקבה" required><span>נקבה</span></label>
+                <label class="chip"><input type="radio" name="gender" value="זכר"><span>זכר</span></label>
+              </div>
+            </fieldset>
           </div>
-          <label for="fNote">משהו שכדאי שנדע? (לא חובה)<textarea id="fNote" name="note" placeholder="רגישויות במזון, שאלה, או מי מגיע איתכם"></textarea></label>
+          <label for="fNote">משהו שכדאי שנדע? (לא חובה)<textarea id="fNote" name="note" placeholder="רגישויות במזון, שאלה, או עם מי אתם מגיעים"></textarea></label>
           <p class="err" id="err" role="alert" hidden></p>
-          <p class="notice" id="soon" role="status" hidden>ההרשמה עוד לא נפתחה, ולכן הפרטים לא נשלחו. היא תיפתח ממש בקרוב.</p>
-          <button class="btn" type="submit">שליחת הפרטים בוואטסאפ</button>
+                    <button class="btn" type="submit">המשך לתשלום</button>
         </form>
         <div class="done" id="done" hidden>
-          <h3>עוד לא שלחתם</h3>
-          <p>לחצו על הכפתור כדי לשלוח לנו את ההודעה בוואטסאפ, ואז עברו לתשלום. ההרשמה סגורה רק אחרי שנאשר אותה.</p>
+          <h3>תודה, <span id="doneName"></span>!</h3>
+          <p id="doneSaved">הפרטים שלכם אצלנו. נשאר לשלם בפייבוקס ולכתוב את השם בהערה לתשלום. ההרשמה סגורה אחרי שנאשר אותה.</p>
+          <p id="doneNotSaved">נשאר לשלם בפייבוקס. כתבו את השם שלכם בהערה לתשלום, כדי שנדע שזה אתם. ההרשמה סגורה אחרי שנאשר אותה.</p>
           <div class="actions">
-            <a class="btn" id="waSend" href="#" target="_blank" rel="noopener">פתיחת וואטסאפ</a>
             <button class="btn btn-ghost" type="button" id="edit">עריכת הפרטים</button>
           </div>
         </div>
       </div>
 
-      <div class="box pay" id="payment">
+      <div class="box pay is-locked" id="payment" aria-live="polite">
         <h3>תשלום</h3>
-        <p>משלמים לפי המחיר שבתוקף ביום ההרשמה.</p>
-        <!-- קישור התשלום מוגדר במשתנה PAYMENT_URL בסקריפט שבסוף הקובץ -->
-        <a class="btn" id="payBtn" target="_blank" rel="noopener" hidden>למעבר לתשלום</a>
-        <span class="btn btn-slot" id="payNote" aria-disabled="true">קישור התשלום יתווסף כאן</span>
+        <div id="payLocked" class="locked">
+          <svg class="lock ink doodle" viewBox="0 0 60 60" aria-hidden="true"><path d="M18 28 V20 C18 8 42 8 42 20 V28"/><path d="M12 28 C24 26 36 26 48 28 C49 38 49 46 48 54 C36 56 24 56 12 54 C11 46 11 38 12 28Z"/><path d="M30 38 V45"/><circle cx="30" cy="37" r="2.5"/></svg>
+          <p>מלאו את הפרטים, והתשלום ייפתח כאן.</p>
+        </div>
+        <div id="payOpen" class="pay-open" hidden>
+          <p class="total">לתשלום: <b id="payTotal"></b></p>
+          <p id="payCalc" class="calc"></p>
+          <!-- קישור התשלום מוגדר במשתנה PAYMENT_URL בסקריפט שבסוף הקובץ -->
+          <a class="btn" id="payBtn" target="_blank" rel="noopener" hidden>לתשלום בפייבוקס</a>
+          <span class="btn btn-slot" id="payNote" aria-disabled="true">קישור התשלום יתווסף כאן</span>
+          <p class="hint">בהערה לתשלום כתבו את השם שלכם.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="center bye">
     <h2>נתראה בשישי!</h2>
-    <a class="wa" id="waDirect" href="#" target="_blank" rel="noopener" hidden>שאלות? כתבו לנו בוואטסאפ · <span id="waNum" dir="ltr"></span></a>
+    <p class="ask">יש שאלות? דברו איתנו בוואטסאפ</p>
+    <div class="contacts" id="contacts"></div>
   </section>
 </main>
-<footer class="small-caps">הולי · נפגשים, זזים ונהנים ביחד</footer>
+<footer class="small-caps"><span lang="en" dir="ltr">Bo’u</span> · בואו · נפגשים, זזים ונהנים ביחד</footer>
 </div>
 
 <script>
 (function(){
   /* ===== להשלים לפני פרסום ===== */
-  var WHATSAPP = "";     /* מספר וואטסאפ בפורמט בינלאומי, בלי + ובלי מקפים. לדוגמה: 972501234567 */
-  var PAYMENT_URL = "";  /* קישור התשלום המלא, שמתחיל ב-https:// */
+  var SHEET_URL = "https://script.google.com/macros/s/AKfycbwnDXKipIj_Y3NWeuJjhx5QbPfXB1hnYMKCTNxvkMsyMpMHuV5HUobCF3L4Mk-WZpU7/exec";    /* כתובת ה-Web app של Google Apps Script (מסתיימת ב-/exec). ריק = הפרטים לא נשמרים */
+  var PAYMENT_URL = "https://links.payboxapp.com/WcRM28lxK6b";  /* קישור התשלום בפייבוקס */
+  var CONTACTS = [      /* אנשי קשר לשאלות (למטה בעמוד). מספרים זמניים — להחליף! */
+    { name: "עומר", phone: "972500000000" },
+    { name: "אור",  phone: "972500000001" }
+  ];
+  var PRICE_NOW = 300;   /* המחיר שבתוקף עכשיו. כשעוברים מדרגה מעדכנים כאן ובכרטיסי המחיר */
   /* ============================== */
 
-  var EVENT = "ריטריט שישי של הולי, 16.10";
-  var hasWa = /^\d{10,15}$/.test(WHATSAPP);
+  var EVENT = "ריטריט שישי של בואו, 16.10";
+  var hasSheet = /^https:\/\/script\.google\.com\/macros\/s\/\S+\/exec$/.test(SHEET_URL);
   var hasPay = /^https:\/\/\S+$/.test(PAYMENT_URL);
   function $(id){ return document.getElementById(id); }
-  function wa(text){ return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(text); }
 
-  /* תשלום */
-  if (hasPay) {
-    $("payBtn").href = PAYMENT_URL;
-    $("payBtn").hidden = false;
-    $("payNote").hidden = true;
+  if (hasPay) { $("payBtn").href = PAYMENT_URL; $("payBtn").hidden = false; $("payNote").hidden = true; }
+
+  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>';
+  CONTACTS.forEach(function(c){
+    if (!/^\d{10,15}$/.test(c.phone)) return;
+    var local = c.phone.indexOf("972") === 0 ? "0" + c.phone.slice(3) : c.phone;
+    var a = document.createElement("a");
+    a.className = "contact-btn";
+    a.target = "_blank"; a.rel = "noopener";
+    a.href = "https://wa.me/" + c.phone + "?text=" + encodeURIComponent("היי " + c.name + ", יש לי שאלה לגבי " + EVENT);
+    a.innerHTML = WA_ICON;
+    var t = document.createElement("span"); t.textContent = c.name + " ";
+    var n = document.createElement("small"); n.dir = "ltr"; n.textContent = local.slice(0,3) + "-" + local.slice(3);
+    t.appendChild(n); a.appendChild(t);
+    $("contacts").appendChild(a);
+  });
+
+  var form = $("regForm"), done = $("done"), err = $("err"), pay = $("payment");
+  function fail(msg, field){ err.textContent = msg; err.hidden = false; field.focus(); }
+  form.addEventListener("change", function(){ err.hidden = true; });
+  function lockPay(){ pay.classList.add("is-locked"); pay.classList.remove("is-open"); $("payLocked").hidden = false; $("payOpen").hidden = true; }
+  function openPay(count){
+    var total = PRICE_NOW * count;
+    $("payTotal").textContent = "₪" + total;
+    $("payCalc").textContent = "מחיר הרשמה מוקדמת, למשתתף אחד";
+    pay.classList.remove("is-locked"); pay.classList.add("is-open");
+    $("payLocked").hidden = true; $("payOpen").hidden = false;
   }
 
-  /* יצירת קשר */
-  if (hasWa) {
-    var local = WHATSAPP.indexOf("972") === 0 ? "0" + WHATSAPP.slice(3) : WHATSAPP;
-    $("waNum").textContent = local.slice(0,3) + "-" + local.slice(3);
-    $("waDirect").href = wa("היי הולי, יש לי שאלה לגבי " + EVENT);
-    $("waDirect").hidden = false;
-  }
-
-  /* טופס */
-  var form = $("regForm"), done = $("done"), err = $("err"), soon = $("soon");
-  function fail(msg, field){ err.textContent = msg; err.hidden = false; soon.hidden = true; field.focus(); }
   form.addEventListener("submit", function(e){
     e.preventDefault();
     var name = form.elements.name.value.trim();
     var phone = form.elements.phone.value.trim();
-    var email = form.elements.email.value.trim();
+    var age = parseInt(form.elements.age.value, 10);
+    var genderEl = form.querySelector('input[name="gender"]:checked');
     var note = form.elements.note.value.trim();
+    var count = 1;
     if (!name) return fail("חסר שם מלא.", form.elements.name);
     if (phone.replace(/\D/g,"").length < 9) return fail("מספר הטלפון נראה קצר מדי. בדקו אותו ונסו שוב.", form.elements.phone);
-    if (email && !/^\S+@\S+\.\S+$/.test(email)) return fail("כתובת האימייל לא תקינה.", form.elements.email);
+    if (!(age >= 1 && age <= 120)) return fail("חסר גיל.", form.elements.age);
+    if (!genderEl) return fail("סמנו נקבה או זכר.", form.querySelector('input[name="gender"]'));
     err.hidden = true;
-    if (!hasWa) { soon.hidden = false; return; }
-    var msg = "היי הולי! רוצה להירשם ל" + EVENT + "\n\n" +
-      "שם: " + name + "\nטלפון: " + phone +
-      (email ? "\nאימייל: " + email : "") +
-      "\nכמה מגיעים: " + form.elements.count.value +
-      (note ? "\nהערות: " + note : "");
-    $("waSend").href = wa(msg);
-    form.hidden = true; done.hidden = false;
-    $("waSend").focus();
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    function finish(saved){
+      $("doneName").textContent = name.split(" ")[0];
+      $("doneSaved").hidden = !saved;
+      $("doneNotSaved").hidden = saved;
+      form.hidden = true; done.hidden = false;
+      openPay(count);
+      var target = window.matchMedia("(max-width:760px)").matches ? pay : done;
+      target.scrollIntoView({behavior: "smooth", block: "center"});
+      (hasPay ? $("payBtn") : $("edit")).focus({preventScroll: true});
+    }
+    if (!hasSheet) return finish(false);
+
+    submitBtn.disabled = true; submitBtn.textContent = "שולחים…";
+    fetch(SHEET_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ name: name, phone: phone, age: age, gender: genderEl.value, note: note, price: PRICE_NOW })
+    })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (!res || !res.ok) throw new Error("save failed");
+        finish(true);
+      })
+      .catch(function(){
+        fail("לא הצלחנו לשמור את הפרטים. בדקו את החיבור ונסו שוב, או כתבו לנו בוואטסאפ.", submitBtn);
+      })
+      .then(function(){ submitBtn.disabled = false; submitBtn.textContent = "המשך לתשלום"; });
   });
-  $("edit").addEventListener("click", function(){ done.hidden = true; form.hidden = false; form.elements.name.focus(); });
+  $("edit").addEventListener("click", function(){ done.hidden = true; form.hidden = false; lockPay(); form.elements.name.focus(); });
 })();
 </script>
 
