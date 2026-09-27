@@ -157,6 +157,8 @@ textarea{min-height:64px;resize:vertical}
 input[type=number]{-moz-appearance:textfield}
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 ::placeholder{color:var(--ph)}
+input[aria-invalid="true"]{border-bottom-color:#B3261E}
+.choice input[aria-invalid="true"] + span{border-color:#B3261E}
 .err{color:#B3261E;font-size:14px;font-weight:600}
 .notice{font-size:15px;background:var(--paper);border:1.5px dashed var(--ph);border-radius:12px;padding:10px 14px}
 form .btn{justify-self:start}
@@ -224,8 +226,10 @@ footer{padding-block:28px 32px;text-align:center}
     <svg class="icon wide ink doodle" viewBox="0 0 140 90" aria-hidden="true"><path d="M30 80 C50 86 90 86 110 80 C104 64 36 64 30 80Z"/><circle cx="52" cy="58" r="10"/><circle cx="72" cy="52" r="12"/><circle cx="92" cy="58" r="10"/><path d="M72 46 C68 50 76 54 72 58 M52 54 C50 58 56 60 52 62 M92 54 C90 58 96 60 92 62"/><path d="M38 64 C30 50 34 40 40 36 C44 46 42 56 38 64Z M104 64 C112 50 108 40 102 36 C98 46 100 56 104 64Z"/></svg>
     <h2>נעים להכיר, אנחנו בואו</h2>
     <svg class="swash ink" viewBox="0 0 120 12" aria-hidden="true"><path d="M4 7 C30 2 70 2 116 6 M30 10 C60 7 90 8 110 10"/></svg>
-    <p class="lead">בין כל מה שצריך להספיק השבוע, רצינו להכניס ליומן גם משהו שפשוט בא לנו לעשות. ככה נולד בואו: סיבה טובה לצאת מהבית, לפגוש אנשים ולבלות כמה שעות שכיף להיות בהן.</p>
-    <p class="lead">אפשר להגיע עם חברים ואפשר לבד. לא צריך להכיר אף אחד מראש, וגם לא צריך לדעת לעשות עמידת ראש. פשוט תבואו.</p>
+   
+   <p class="lead">בין כל מה שצריך להספיק השבוע, רצינו להכניס ליומן גם משהו שפשוט בא לנו לעשות. ככה נולד בואו: סיבה טובה לצאת מהבית, לפגוש אנשים ולבלות כמה שעות שכיף להיות בהן.</p>
+     <p class="lead">אפשר להגיע עם חברים ואפשר לבד. לא צריך להכיר אף אחד מראש, וגם לא צריך לדעת לעשות עמידת ראש..</p>
+   <p class="lead">פשוט תבואו</p>
   </section>
 
   <section id="details">
@@ -270,11 +274,11 @@ footer{padding-block:28px 32px;text-align:center}
         <p id="formIntro">ממלאים את הפרטים, ושלב התשלום נפתח. באים כמה? כל אחד נרשם בנפרד.</p>
         <form id="regForm" novalidate>
           <div class="row">
-            <label for="fName">שם מלא<input id="fName" name="name" autocomplete="name" required></label>
-            <label for="fPhone">טלפון<input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" required></label>
+            <label for="fName">שם מלא<input id="fName" name="name" autocomplete="name" placeholder="בעברית, שם פרטי ומשפחה" maxlength="60" required></label>
+            <label for="fPhone">טלפון<input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right" placeholder="050-1234567" maxlength="16" required></label>
           </div>
           <div class="row">
-            <label for="fAge">גיל<input id="fAge" name="age" type="number" inputmode="numeric" min="1" max="120" required></label>
+            <label for="fAge">גיל<input id="fAge" name="age" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" required></label>
             <fieldset class="choice">
               <legend>מין</legend>
               <div class="chips">
@@ -401,8 +405,24 @@ footer{padding-block:28px 32px;text-align:center}
   });
 
   var form = $("regForm"), done = $("done"), err = $("err"), pay = $("payment");
-  function fail(msg, field){ err.textContent = msg; err.hidden = false; field.focus(); }
-  form.addEventListener("change", function(){ err.hidden = true; });
+  function fail(msg, field){
+    err.textContent = msg; err.hidden = false;
+    form.querySelectorAll("[aria-invalid]").forEach(function(el){ el.removeAttribute("aria-invalid"); });
+    field.setAttribute("aria-invalid", "true");
+    field.focus();
+  }
+  function clearErr(e){ err.hidden = true; if (e && e.target) e.target.removeAttribute("aria-invalid"); }
+  form.addEventListener("input", clearErr);
+  form.addEventListener("change", clearErr);
+  /* שם: אותיות עבריות, רווח, מקף וגרש בלבד */
+  var HEB_NAME = /^[\u05D0-\u05EA\u05F3\u05F4'"\- ]+$/;
+  function normPhone(v){
+    var d = v.replace(/[\s\-().]/g, "");
+    if (d.indexOf("+972") === 0) d = "0" + d.slice(4);
+    else if (d.indexOf("972") === 0 && d.length === 12) d = "0" + d.slice(3);
+    return d;
+  }
+  var IL_PHONE = /^0(5\d{8}|7\d{8}|[2-489]\d{7})$/;
   function lockPay(){ pay.classList.add("is-locked"); pay.classList.remove("is-open"); $("payLocked").hidden = false; $("payOpen").hidden = true; }
   function openPay(count){
     var total = PRICE_NOW * count;
@@ -414,15 +434,21 @@ footer{padding-block:28px 32px;text-align:center}
 
   form.addEventListener("submit", function(e){
     e.preventDefault();
-    var name = form.elements.name.value.trim();
+    var name = form.elements.name.value.trim().replace(/\s+/g, " ");
     var phone = form.elements.phone.value.trim();
     var age = parseInt(form.elements.age.value, 10);
     var genderEl = form.querySelector('input[name="gender"]:checked');
     var note = form.elements.note.value.trim();
     var count = 1;
+    var ageRaw = form.elements.age.value.trim();
     if (!name) return fail("חסר שם מלא.", form.elements.name);
-    if (phone.replace(/\D/g,"").length < 9) return fail("מספר הטלפון נראה קצר מדי. בדקו אותו ונסו שוב.", form.elements.phone);
-    if (!(age >= 1 && age <= 120)) return fail("חסר גיל.", form.elements.age);
+    if (!HEB_NAME.test(name)) return fail("כתבו את השם בעברית, בבקשה.", form.elements.name);
+    if (name.split(" ").filter(function(w){ return w.replace(/['"\-]/g, "").length >= 2; }).length < 2) return fail("כתבו שם פרטי ושם משפחה.", form.elements.name);
+    if (!phone) return fail("חסר מספר טלפון.", form.elements.phone);
+    if (!IL_PHONE.test(normPhone(phone))) return fail("מספר הטלפון לא תקין. לדוגמה: 050-1234567", form.elements.phone);
+    phone = normPhone(phone);
+    if (!ageRaw) return fail("חסר גיל.", form.elements.age);
+    if (!/^\d{1,3}$/.test(ageRaw) || !(age >= 1 && age <= 120)) return fail("הגיל לא תקין. כתבו מספר, למשל 32.", form.elements.age);
     if (!genderEl) return fail("סמנו נקבה או זכר.", form.querySelector('input[name="gender"]'));
     err.hidden = true;
 
