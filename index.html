@@ -102,21 +102,21 @@ figcaption b{font-family:"Caveat","Segoe Print",cursive;font-size:36px;line-heig
 @media (max-width:640px){.cols{grid-template-columns:1fr;gap:36px}}
 
 /* pricing + register */
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:720px;margin-top:24px}
-.tier{position:relative;display:grid;gap:4px;justify-items:center;padding:26px 14px 18px;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:18px 22px 16px 24px;text-decoration:none;color:var(--ink);transition:transform .15s,opacity .2s}
-.tier.is-now{box-shadow:4px 5px 0 var(--ink);cursor:pointer}
-.tier.is-now:hover{transform:translate(-2px,-2px);box-shadow:6px 7px 0 var(--ink)}
-.badge{position:absolute;top:-13px;background:var(--ink);color:var(--on-ink);font-size:12px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:999px;transform:rotate(-3deg)}
-.tier.is-later{opacity:.45;border-style:dashed;background:transparent;cursor:not-allowed;user-select:none}
-.tier.is-later .price{text-decoration:line-through;text-decoration-thickness:1.5px}
-.tier.is-later::after{content:attr(data-soon);position:absolute;inset:0;display:grid;place-items:center;background:var(--paper);border-radius:inherit;font-family:var(--script);font-weight:700;font-size:34px;opacity:0;transition:opacity .2s}
-.tier.is-later:hover{opacity:1}
-.tier.is-later:hover::after{opacity:.94}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:680px;margin-top:22px}
+.tier{position:relative;isolation:isolate;display:grid;gap:2px;justify-items:center;padding:22px 14px 18px;color:var(--ink);transition:opacity .2s}
+.tier-frame{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible;filter:url(#wobble)}
+.tier-frame path{fill:var(--paper-2);stroke:var(--ink);stroke-width:1.8;vector-effect:non-scaling-stroke}
 .tier .name{font-size:13px;font-weight:700;letter-spacing:.12em}
-.tier .price{font-family:var(--body);font-weight:300;font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
-.tier .when{font-size:14px;color:var(--ink-soft)}
+.tier .price{font-family:var(--script);font-weight:700;font-size:58px;line-height:1;font-variant-numeric:tabular-nums}
+.tier-swash{width:70px;height:10px;fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;visibility:hidden}
+.tier .state{font-size:13px;color:var(--ink-soft);min-height:1.4em}
+.tier.is-now .tier-swash{visibility:visible}
+.tier.is-now .tier-frame path{stroke-width:2.4}
+.tier.is-later,.tier.is-past{opacity:.42}
+.tier.is-later .tier-frame path,.tier.is-past .tier-frame path{fill:transparent;stroke-dasharray:5 5}
+.tier.is-past .price{text-decoration:line-through;text-decoration-thickness:1.5px}
 .fine{font-size:15px;color:var(--ink-soft);max-width:48ch}
-@media (max-width:600px){.tiers{grid-template-columns:1fr;max-width:300px}}
+@media (max-width:600px){.tiers{grid-template-columns:1fr;max-width:280px}}
 
 .steps{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px}
 .steps li{display:flex;align-items:center;gap:8px;font-weight:600}
@@ -194,7 +194,7 @@ footer{padding-block:28px 32px;text-align:center}
       <span class="brand-he">בואו</span>
     </a>
     <h1>יש לנו תוכניות לשישי</h1>
-    <p class="hero-sub">איך זה שיום שישי נהיה היום הכי עמוס בשבוע? החלטנו לקחת ממנו כמה שעות בחזרה. קצת תנועה, קצת מנוחה, אוכל טוב ואנשים שכיף לפגוש. הדג של שישי יחכה לערב. ניפגש?</p>
+    <p class="hero-sub">איך זה שיום שישי נהיה היום הכי עמוס בשבוע? החלטנו לקחת ממנו כמה שעות בחזרה. קצת תנועה, קצת מנוחה, נשנושים ואנשים שכיף לפגוש. הדג של שישי יחכה לערב. ניפגש?</p>
     <div class="hero-row">
       <div class="hero-meta small-caps"><span>שישי · 16.10</span><span dir="ltr">10:00–14:00</span><svg class="swash ink" viewBox="0 0 120 12" aria-hidden="true"><path d="M4 7 C30 2 70 2 116 6 M30 10 C60 7 90 8 110 10"/></svg></div>
       <svg class="hero-doodle ink doodle" viewBox="0 0 320 210" role="img" aria-label="ציור של נרות שבת, חלה וגביע קידוש">
@@ -252,11 +252,11 @@ footer{padding-block:28px 32px;text-align:center}
   <section id="register" class="center">
     <h2>שריינו לכם מקום</h2>
     <div class="tiers" role="list">
-      <a class="tier is-now" role="listitem" href="#regForm" aria-label="הרשמה מוקדמת, 300 שקלים, המחיר הנוכחי. למעבר לטופס"><span class="badge">המחיר עכשיו</span><span class="name">הרשמה מוקדמת</span><span class="price">₪300</span><span class="when ph">עד תאריך שיפורסם בקרוב</span></a>
-      <div class="tier is-later" role="listitem" aria-disabled="true" data-soon="ייפתח בהמשך"><span class="name">מחיר רגיל</span><span class="price">₪350</span><span class="when">אחרי ההרשמה המוקדמת</span></div>
-      <div class="tier is-later" role="listitem" aria-disabled="true" data-soon="ייפתח בהמשך"><span class="name">הרשמה מאוחרת</span><span class="price">₪400</span><span class="when">ממש לפני האירוע</span></div>
+      <div class="tier" role="listitem" data-tier="0"><svg class="tier-frame" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true"><path d="M5.0 7.2 Q5.0 7.2 13.6 5.0 Q22.3 2.8 30.9 5.0 Q39.5 7.2 48.2 5.0 Q56.8 2.8 65.5 5.0 Q74.1 7.2 82.7 5.0 Q91.4 2.8 100.0 5.0 Q108.6 7.2 117.3 5.0 Q125.9 2.8 134.5 5.0 Q143.2 7.2 151.8 5.0 Q160.5 2.8 169.1 5.0 Q177.7 7.2 185.3 6.1 Q192.8 5.0 195.0 13.6 Q197.2 22.1 195.0 30.7 Q192.8 39.3 195.0 47.9 Q197.2 56.4 195.0 65.0 Q192.8 73.6 195.0 82.1 Q197.2 90.7 195.0 99.3 Q192.8 107.9 193.9 115.3 Q195.0 122.8 186.4 125.0 Q177.7 127.2 169.1 125.0 Q160.5 122.8 151.8 125.0 Q143.2 127.2 134.5 125.0 Q125.9 122.8 117.3 125.0 Q108.6 127.2 100.0 125.0 Q91.4 122.8 82.7 125.0 Q74.1 127.2 65.5 125.0 Q56.8 122.8 48.2 125.0 Q39.5 127.2 30.9 125.0 Q22.3 122.8 14.7 123.9 Q7.2 125.0 5.0 116.4 Q2.8 107.9 5.0 99.3 Q7.2 90.7 5.0 82.1 Q2.8 73.6 5.0 65.0 Q7.2 56.4 5.0 47.9 Q2.8 39.3 5.0 30.7 Q7.2 22.1 6.1 14.7 Z"/></svg><span class="name">הרשמה מוקדמת</span><span class="price">₪300</span><svg class="tier-swash" viewBox="0 0 120 12" aria-hidden="true"><path d="M6 7 C34 2 76 2 114 6 M30 10 C58 7 86 8 104 10"/></svg><span class="state"></span></div>
+      <div class="tier" role="listitem" data-tier="1"><svg class="tier-frame" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true"><path d="M5.0 7.2 Q5.0 7.2 13.6 5.0 Q22.3 2.8 30.9 5.0 Q39.5 7.2 48.2 5.0 Q56.8 2.8 65.5 5.0 Q74.1 7.2 82.7 5.0 Q91.4 2.8 100.0 5.0 Q108.6 7.2 117.3 5.0 Q125.9 2.8 134.5 5.0 Q143.2 7.2 151.8 5.0 Q160.5 2.8 169.1 5.0 Q177.7 7.2 185.3 6.1 Q192.8 5.0 195.0 13.6 Q197.2 22.1 195.0 30.7 Q192.8 39.3 195.0 47.9 Q197.2 56.4 195.0 65.0 Q192.8 73.6 195.0 82.1 Q197.2 90.7 195.0 99.3 Q192.8 107.9 193.9 115.3 Q195.0 122.8 186.4 125.0 Q177.7 127.2 169.1 125.0 Q160.5 122.8 151.8 125.0 Q143.2 127.2 134.5 125.0 Q125.9 122.8 117.3 125.0 Q108.6 127.2 100.0 125.0 Q91.4 122.8 82.7 125.0 Q74.1 127.2 65.5 125.0 Q56.8 122.8 48.2 125.0 Q39.5 127.2 30.9 125.0 Q22.3 122.8 14.7 123.9 Q7.2 125.0 5.0 116.4 Q2.8 107.9 5.0 99.3 Q7.2 90.7 5.0 82.1 Q2.8 73.6 5.0 65.0 Q7.2 56.4 5.0 47.9 Q2.8 39.3 5.0 30.7 Q7.2 22.1 6.1 14.7 Z"/></svg><span class="name">מחיר רגיל</span><span class="price">₪350</span><svg class="tier-swash" viewBox="0 0 120 12" aria-hidden="true"><path d="M6 7 C34 2 76 2 114 6 M30 10 C58 7 86 8 104 10"/></svg><span class="state"></span></div>
+      <div class="tier" role="listitem" data-tier="2"><svg class="tier-frame" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true"><path d="M5.0 7.2 Q5.0 7.2 13.6 5.0 Q22.3 2.8 30.9 5.0 Q39.5 7.2 48.2 5.0 Q56.8 2.8 65.5 5.0 Q74.1 7.2 82.7 5.0 Q91.4 2.8 100.0 5.0 Q108.6 7.2 117.3 5.0 Q125.9 2.8 134.5 5.0 Q143.2 7.2 151.8 5.0 Q160.5 2.8 169.1 5.0 Q177.7 7.2 185.3 6.1 Q192.8 5.0 195.0 13.6 Q197.2 22.1 195.0 30.7 Q192.8 39.3 195.0 47.9 Q197.2 56.4 195.0 65.0 Q192.8 73.6 195.0 82.1 Q197.2 90.7 195.0 99.3 Q192.8 107.9 193.9 115.3 Q195.0 122.8 186.4 125.0 Q177.7 127.2 169.1 125.0 Q160.5 122.8 151.8 125.0 Q143.2 127.2 134.5 125.0 Q125.9 122.8 117.3 125.0 Q108.6 127.2 100.0 125.0 Q91.4 122.8 82.7 125.0 Q74.1 127.2 65.5 125.0 Q56.8 122.8 48.2 125.0 Q39.5 127.2 30.9 125.0 Q22.3 122.8 14.7 123.9 Q7.2 125.0 5.0 116.4 Q2.8 107.9 5.0 99.3 Q7.2 90.7 5.0 82.1 Q2.8 73.6 5.0 65.0 Q7.2 56.4 5.0 47.9 Q2.8 39.3 5.0 30.7 Q7.2 22.1 6.1 14.7 Z"/></svg><span class="name">הרשמה מאוחרת</span><span class="price">₪400</span><svg class="tier-swash" viewBox="0 0 120 12" aria-hidden="true"><path d="M6 7 C34 2 76 2 114 6 M30 10 C58 7 86 8 104 10"/></svg><span class="state"></span></div>
     </div>
-    <p class="fine">הכרטיס כולל את כל מה שבתוכנית, את האוכל ואת המתנה.</p>
+    <p class="fine">הכרטיס כולל את כל מה שבתוכנית, את הנשנושים ואת המתנה.</p>
 
     <ol class="steps" aria-label="איך נרשמים">
       <li><i>1</i>ממלאים פרטים</li>
@@ -360,7 +360,22 @@ footer{padding-block:28px 32px;text-align:center}
     { name: "עומר", phone: "972547684544" },
     { name: "אור", phone: "972528659090" }
   ];
-  var PRICE_NOW = 300;   /* המחיר שבתוקף עכשיו. כשעוברים מדרגה מעדכנים כאן ובכרטיסי המחיר */
+  /* מדרגות מחיר. כדי לעבור מדרגה משנים רק את TIER_NOW:
+     0 = הרשמה מוקדמת, 1 = מחיר רגיל, 2 = הרשמה מאוחרת */
+  var TIER_NOW = 0;
+  var TIERS = [
+    { name: "הרשמה מוקדמת", price: 300 },
+    { name: "מחיר רגיל",     price: 350 },
+    { name: "הרשמה מאוחרת", price: 400 }
+  ];
+  var PRICE_NOW = TIERS[TIER_NOW].price;
+  document.querySelectorAll(".tier").forEach(function(el){
+    var i = +el.getAttribute("data-tier");
+    var state = el.querySelector(".state");
+    if (i === TIER_NOW) { el.classList.add("is-now"); state.textContent = "פתוח להרשמה"; }
+    else if (i < TIER_NOW) { el.classList.add("is-past"); state.textContent = "נסגר"; }
+    else { el.classList.add("is-later"); state.textContent = "בהמשך"; }
+  });
   /* ============================== */
 
   var EVENT = "ריטריט שישי של בואו, 16.10";
@@ -392,7 +407,7 @@ footer{padding-block:28px 32px;text-align:center}
   function openPay(count){
     var total = PRICE_NOW * count;
     $("payTotal").textContent = "₪" + total;
-    $("payCalc").textContent = "מחיר הרשמה מוקדמת, למשתתף אחד";
+    $("payCalc").textContent = TIERS[TIER_NOW].name + ", למשתתף אחד";
     pay.classList.remove("is-locked"); pay.classList.add("is-open");
     $("payLocked").hidden = true; $("payOpen").hidden = false;
   }
