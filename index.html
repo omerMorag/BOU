@@ -176,10 +176,18 @@ form .btn{justify-self:start}
 .contact-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;text-decoration:none;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
 .contact-btn:hover span{text-decoration:underline;text-underline-offset:4px}
 .contact-btn svg{width:26px;height:26px;flex:none}
-.fineprint{width:100%;max-width:640px;margin:34px auto 0;padding-top:16px;border-top:1.5px dashed var(--line);text-align:start;display:grid;gap:8px;color:var(--ink-soft);font-size:13px;line-height:1.7}
-.fineprint h3{font-family:var(--body);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--ink)}
-.community{margin-top:10px}
-.community svg{width:20px;height:20px;flex:none}
+.page-end{max-width:900px;margin-inline:auto;padding:0 20px 28px;direction:rtl}
+.fineprint{width:100%;max-width:640px;margin:0 auto;padding-top:14px;border-top:1.5px dashed var(--line);text-align:start;display:grid;gap:6px;color:var(--ink-soft);font-size:12px;line-height:1.7;opacity:.85}
+.fineprint h3{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--ink)}
+.community-wrap{padding-block:10px 40px}
+.community-card{position:relative;isolation:isolate;display:grid;justify-items:center;gap:8px;max-width:440px;margin-inline:auto;padding:30px 28px 28px}
+.community-frame{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible;filter:url(#wobble)}
+.community-frame path{fill:var(--paper-2);stroke:var(--ink);stroke-width:1.8;vector-effect:non-scaling-stroke}
+.community-title{font-family:var(--script);font-weight:700;font-size:38px;line-height:1.1}
+.community-text{font-size:15px;color:var(--ink-soft)}
+.community-btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;margin-top:6px;padding:10px 24px;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;text-decoration:none;box-shadow:3px 4px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.community-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 5px 0 var(--ink)}
+.community-btn svg{width:20px;height:20px;flex:none}
 footer{padding-block:28px 32px;text-align:center}
 .foot-mark{font-family:"Marcellus","Cormorant Garamond",Georgia,serif;letter-spacing:.25em;font-weight:400}
 </style>
@@ -237,6 +245,15 @@ footer{padding-block:28px 32px;text-align:center}
    <p class="lead">בין כל מה שצריך להספיק השבוע, רצינו להכניס ליומן גם משהו שפשוט בא לנו לעשות. ככה נולד בואו: סיבה טובה לצאת מהבית, לפגוש אנשים ולבלות כמה שעות שכיף להיות בהן.</p>
      <p class="lead">אפשר להגיע עם חברים ואפשר לבד. לא צריך להכיר אף אחד מראש, וגם לא צריך לדעת לעשות עמידת ראש.</p>
    <p class="lead">פשוט תבואו</p>
+  </section>
+
+  <section class="center community-wrap" aria-label="הקהילה של בואו">
+    <div class="community-card">
+      <svg class="community-frame" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true"><path d="M5.0 7.2 Q5.0 7.2 13.6 5.0 Q22.3 2.8 30.9 5.0 Q39.5 7.2 48.2 5.0 Q56.8 2.8 65.5 5.0 Q74.1 7.2 82.7 5.0 Q91.4 2.8 100.0 5.0 Q108.6 7.2 117.3 5.0 Q125.9 2.8 134.5 5.0 Q143.2 7.2 151.8 5.0 Q160.5 2.8 169.1 5.0 Q177.7 7.2 185.3 6.1 Q192.8 5.0 195.0 13.6 Q197.2 22.1 195.0 30.7 Q192.8 39.3 195.0 47.9 Q197.2 56.4 195.0 65.0 Q192.8 73.6 195.0 82.1 Q197.2 90.7 195.0 99.3 Q192.8 107.9 193.9 115.3 Q195.0 122.8 186.4 125.0 Q177.7 127.2 169.1 125.0 Q160.5 122.8 151.8 125.0 Q143.2 127.2 134.5 125.0 Q125.9 122.8 117.3 125.0 Q108.6 127.2 100.0 125.0 Q91.4 122.8 82.7 125.0 Q74.1 127.2 65.5 125.0 Q56.8 122.8 48.2 125.0 Q39.5 127.2 30.9 125.0 Q22.3 122.8 14.7 123.9 Q7.2 125.0 5.0 116.4 Q2.8 107.9 5.0 99.3 Q7.2 90.7 5.0 82.1 Q2.8 73.6 5.0 65.0 Q7.2 56.4 5.0 47.9 Q2.8 39.3 5.0 30.7 Q7.2 22.1 6.1 14.7 Z"/></svg>
+      <p class="community-title">רוצים להישאר בעניינים?</p>
+      <p class="community-text">בקבוצת הוואטסאפ של בואו מעדכנים על המפגשים הבאים.</p>
+      <a class="community-btn" href="https://chat.whatsapp.com/FVJ1G2fZAZZ1ZVNtM6YfLD?mode=gi_t" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>צרפו אותי לקהילה</a>
+    </div>
   </section>
 
   <section id="details">
@@ -325,11 +342,6 @@ footer{padding-block:28px 32px;text-align:center}
       </div>
     </div>
 
-    <div class="fineprint">
-      <h3>האותיות הקטנות</h3>
-      <p>ידוע לי כי הפקת הריטריט כרוכה בהיערכות מראש, שריון מקומות, ציוד ותשלום לספקים, ועל כן מרגע ההרשמה והתשלום לא יינתן כל החזר כספי או זיכוי בגין ביטול השתתפות או אי-הגעה.</p>
-      <p>יוצא מן הכלל הוא מקרה קיצון מובהק של כוח עליון שאינו מאפשר את קיום האירוע או הגעת המשתתף (כגון מלחמה, מצב ביטחוני חריג המונע התקהלות, או צו 8). במקרה כזה, המארגנים יפעלו בהגינות ויציעו מועד חלופי או החזר כספי בהתאם לנסיבות וליכולת ההפקה.</p>
-    </div>
   </section>
 
   <section class="center" aria-label="ככה זה נראה">
@@ -363,10 +375,16 @@ footer{padding-block:28px 32px;text-align:center}
     <h2>נתראה בשישי!</h2>
     <p class="ask">יש שאלות? דברו איתנו, אנחנו חמודות</p>
     <div class="contacts" id="contacts"></div>
-    <a class="btn community" href="https://chat.whatsapp.com/FVJ1G2fZAZZ1ZVNtM6YfLD?mode=gi_t" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg>צרפו אותי לקהילה</a>
   </section>
 </main>
 <footer class="small-caps"><span class="foot-mark" lang="en" dir="ltr">BOU</span> · בואו</footer>
+<div class="page-end">
+  <div class="fineprint">
+    <h3>האותיות הקטנות</h3>
+    <p>ידוע לי כי הפקת הריטריט כרוכה בהיערכות מראש, שריון מקומות, ציוד ותשלום לספקים, ועל כן מרגע ההרשמה והתשלום לא יינתן כל החזר כספי או זיכוי בגין ביטול השתתפות או אי-הגעה.</p>
+    <p>יוצא מן הכלל הוא מקרה קיצון מובהק של כוח עליון שאינו מאפשר את קיום האירוע או הגעת המשתתף (כגון מלחמה, מצב ביטחוני חריג המונע התקהלות, או צו 8). במקרה כזה, המארגנים יפעלו בהגינות ויציעו מועד חלופי או החזר כספי בהתאם לנסיבות וליכולת ההפקה.</p>
+  </div>
+</div>
 </div>
 
 <script>
