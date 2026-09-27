@@ -6,7 +6,7 @@
 <title>ריטריט שישי של בואו</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@600;700&family=Assistant:wght@300;400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@600;700&family=Marcellus&family=Assistant:wght@300;400;600;700&display=swap">
 <style>
 :root{
   --paper:#FFF6C8; --paper-2:#FFFBE3; --ink:#3A2CB0; --ink-soft:#5549BD; --line:#C9C1EE; --on-ink:#FFF6C8; --ph:#9E95DD; --accent:#EE6A3C;
@@ -43,9 +43,9 @@ h2{font-size:clamp(46px,8vw,68px)}
 .hero{padding-block:52px 44px}
 .hero .small-caps.top{font-size:14px;margin-top:10px}
 .brand{display:grid;justify-items:center;text-decoration:none;line-height:1}
-.brand-mark{font-family:"Caveat","Segoe Print",cursive;font-weight:700;font-size:64px;letter-spacing:.06em;filter:url(#wobble)}
-.brand-loop{width:130px;height:18px;margin-top:-10px}
-.brand-he{font-size:13px;font-weight:700;letter-spacing:.3em;margin-top:2px}
+.brand-ring{width:88px;height:88px;display:block}
+.brand-mark{font-family:"Marcellus","Cormorant Garamond",Georgia,serif;font-size:30px;letter-spacing:.32em;margin-inline-start:.32em;margin-top:8px}
+.brand-he{font-size:13px;font-weight:700;letter-spacing:.3em;margin-top:8px}
 .hero h1{font-size:clamp(56px,11vw,104px)}
 .hero-sub{max-width:36ch;font-size:19px}
 .hero-row{display:grid;grid-template-columns:1fr minmax(0,400px) 1fr;align-items:end;gap:18px;width:100%;margin-top:6px}
@@ -180,8 +180,14 @@ footer{padding-block:28px 32px;text-align:center}
 <main>
   <section class="hero center">
     <a class="brand" href="#" aria-label="BOU, בואו">
+      <svg class="brand-ring" viewBox="28 14 144 144" aria-hidden="true">
+        <defs>
+          <linearGradient id="ringInk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5A4DD0"/><stop offset=".55" stop-color="#3A2CB0"/><stop offset="1" stop-color="#2A1F8A"/></linearGradient>
+          <filter id="brushEdge"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1"/></filter>
+        </defs>
+        <g fill="url(#ringInk)" filter="url(#brushEdge)"><path d="M114.9 26.4 L110.1 25.7 L105.3 25.3 L100.5 25.1 L95.7 25.2 L90.9 25.5 L86 26 L81.2 26.8 L76.4 27.9 L71.6 29.3 L66.8 31.1 L62.2 33.3 L57.7 35.9 L53.4 38.9 L49.3 42.2 L45.6 46 L42.1 50.2 L39.1 54.6 L36.6 59.4 L34.5 64.4 L32.9 69.6 L31.8 75 L31.2 80.4 L31.1 85.8 L31.5 91.2 L32.4 96.5 L33.7 101.8 L35.5 106.8 L37.6 111.7 L40.1 116.4 L42.9 120.9 L46 125.1 L49.4 129.1 L53.1 132.8 L57.1 136.2 L61.3 139.3 L65.7 142 L70.3 144.3 L75.1 146.2 L80 147.7 L85 148.8 L90 149.4 L95.1 149.6 L100.1 149.4 L105.1 148.8 L110 147.9 L114.7 146.6 L119.3 144.9 L123.8 142.9 L128.1 140.7 L132.2 138.2 L136.2 135.5 L140.1 132.5 L143.7 129.3 L147.2 125.9 L150.6 122.3 L153.7 118.5 L156.7 114.5 L159.4 110.2 L161.8 105.7 L163.9 100.9 L165.7 96 L167 90.8 L168 85.5 L168.2 80.1 L167.4 74.8 L165.7 69.7 L163.4 64.8 L160.7 60.2 L157.9 55.9 L155 51.6 L140.6 60.6 L142.9 63.7 L145.5 66.7 L148.1 69.9 L150.6 73.5 L152.5 77.3 L153.7 81.4 L153.8 85.6 L153 89.8 L151.8 93.9 L150.3 97.8 L148.5 101.4 L146.4 104.9 L144.2 108.2 L141.8 111.3 L139.2 114.2 L136.4 116.8 L133.5 119.2 L130.6 121.5 L127.5 123.5 L124.3 125.3 L121 126.8 L117.6 128.2 L114.2 129.3 L110.7 130.1 L107.2 130.7 L103.7 131 L100.1 131.1 L96.5 130.8 L93 130.3 L89.6 129.5 L86.2 128.5 L83 127.1 L79.8 125.6 L76.8 123.8 L74 121.8 L71.2 119.7 L68.6 117.3 L66.2 114.9 L63.8 112.2 L61.7 109.4 L59.7 106.5 L58 103.3 L56.4 100.1 L55.1 96.7 L54 93.2 L53.1 89.6 L52.4 85.9 L52 82.1 L51.9 78.2 L52.1 74.3 L52.7 70.4 L53.7 66.6 L55 62.8 L56.7 59.2 L58.7 55.7 L61.1 52.4 L63.8 49.4 L66.7 46.6 L69.9 44 L73.3 41.8 L76.8 39.8 L80.5 38.1 L84.4 36.7 L88.3 35.5 L92.3 34.6 L96.3 34 L100.4 33.6 L104.6 33.5 L108.7 33.7 L112.9 34.1 Z"/><circle cx="113.9" cy="30.2" r="4"/><circle cx="147.8" cy="56.1" r="8.5"/></g>
+      </svg>
       <span class="brand-mark" lang="en" dir="ltr">BOU</span>
-      <svg class="brand-loop ink" viewBox="0 0 160 22" aria-hidden="true"><path d="M6 12 C40 4 96 3 152 9 C120 7 60 12 30 18"/></svg>
       <span class="brand-he">בואו</span>
     </a>
     <p class="small-caps top">ריטריט שישי של בואו</p>
